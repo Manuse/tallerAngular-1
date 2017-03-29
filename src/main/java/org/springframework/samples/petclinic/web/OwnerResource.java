@@ -64,8 +64,8 @@ public class OwnerResource extends AbstractResourceController {
      */
     @RequestMapping(value = "/owner", method = RequestMethod.POST)
     @ResponseStatus(HttpStatus.CREATED)
-    public void createOwner(@Valid @RequestBody Owner owner) {
-    	this.clinicService.saveOwner(owner);
+    public Owner createOwner(@Valid @RequestBody Owner owner) {
+    	return this.clinicService.saveOwner(owner);	
     }
     
     /**
@@ -98,6 +98,13 @@ public class OwnerResource extends AbstractResourceController {
     	ownerModel.setTelephone(ownerRequest.getTelephone());
         this.clinicService.saveOwner(ownerModel);
         return ownerModel;
+    }
+    
+    @RequestMapping(value = "/owner/{ownerId}", method = RequestMethod.DELETE)
+    public Owner deleteOwner(@PathVariable("ownerId") int ownerId){
+    	Owner owner = retrieveOwner(ownerId);
+    	this.clinicService.deleteOwner(ownerId);
+    	return owner;
     }
 
 

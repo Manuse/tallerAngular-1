@@ -43,8 +43,9 @@ public interface ClinicService {
 
     Collection<Vet> findVets();
 
-    void saveOwner(Owner owner);
+    Owner saveOwner(Owner owner);
 
     Collection<Owner> findAll();
-
+    
+    void deleteOwner(int id);
 }
